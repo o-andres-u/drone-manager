@@ -34,4 +34,10 @@ tasks {
             jvmTarget = "1.8"
         }
     }
+
+    withType<Test> {
+        useJUnitPlatform {
+            includeEngines("spek2")
+        }
+    }
 }

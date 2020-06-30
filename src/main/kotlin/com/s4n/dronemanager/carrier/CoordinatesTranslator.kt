@@ -39,5 +39,4 @@ class CoordinatesTranslator {
         }
         return CartesianCoordinate(x, y, orientation)
     }
-
 }

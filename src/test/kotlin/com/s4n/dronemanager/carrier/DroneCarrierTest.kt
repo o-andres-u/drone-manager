@@ -20,7 +20,7 @@ object DroneCarrierTest : Spek({
             }
 
             Then("it should return the current coordinate after delivering") {
-                assertThat(coordinate.toString()).isEqualTo("(-2,4,W)")
+                assertThat(coordinate).isEqualTo(CartesianCoordinate(-2,4,'W'))
             }
         }
 

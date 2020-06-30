@@ -51,17 +51,6 @@ class CoordinatesTranslatorTest : Spek({
                 assertThat(coordinates).isEqualTo(CartesianCoordinate(-1, 3, 'S'))
             }
         }
-
-        Scenario("Coordinates String representation") {
-            var stringRepresentation: String? = null
-            When("Calling toString") {
-                stringRepresentation = CartesianCoordinate(1,20,'W').toString()
-            }
-
-            Then("it should be written by following the correct format") {
-                assertThat(stringRepresentation).isEqualTo("(1,20,W)")
-            }
-        }
     }
 
 })

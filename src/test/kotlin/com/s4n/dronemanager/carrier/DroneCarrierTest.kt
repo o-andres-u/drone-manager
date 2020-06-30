@@ -1,10 +1,10 @@
 package com.s4n.dronemanager.carrier
 
 import com.s4n.dronemanager.exception.DeliveryException
-import org.assertj.core.api.Assertions.*
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.catchThrowable
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.gherkin.Feature
-import java.lang.Exception
 
 object DroneCarrierTest : Spek({
 

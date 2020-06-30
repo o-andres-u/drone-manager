@@ -3,15 +3,14 @@ package com.s4n.dronemanager.carrier
 import com.s4n.dronemanager.constants.MAX_BLOCKS
 import com.s4n.dronemanager.exception.DeliveryException
 import com.s4n.dronemanager.model.CartesianCoordinate
+import com.s4n.dronemanager.model.Drone
 import kotlin.math.abs
 
-class DroneCarrier {
-
+class DroneCarrier(private val drone: Drone) {
     var instructionTranslator = CoordinatesTranslator()
 
-    fun sendItem(droneName: String, instructions: String): CartesianCoordinate {
-        val initialCoordinate = CartesianCoordinate(0, 0, 'N')
-        val deliveryCoordinate = instructionTranslator.calculateDeliveryCoordinates(initialCoordinate, instructions)
+    fun sendItem(instructions: String): CartesianCoordinate {
+        val deliveryCoordinate = instructionTranslator.calculateDeliveryCoordinates(drone.currentLocation, instructions)
         validateCoordinates(deliveryCoordinate)
 
         return deliveryCoordinate

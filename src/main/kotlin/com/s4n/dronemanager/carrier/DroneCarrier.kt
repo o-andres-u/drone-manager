@@ -12,6 +12,7 @@ class DroneCarrier(private val drone: Drone) {
     fun sendItem(instructions: String): CartesianCoordinate {
         val deliveryCoordinate = instructionTranslator.calculateDeliveryCoordinates(drone.currentLocation, instructions)
         validateCoordinates(deliveryCoordinate)
+        drone.currentLocation = deliveryCoordinate
 
         return deliveryCoordinate
     }

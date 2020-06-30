@@ -14,7 +14,7 @@ import org.spekframework.spek2.style.gherkin.Feature
 object DroneCarrierTest : Spek({
 
     Feature("Drone Carrier") {
-        val drone = Drone("mavic-01", CartesianCoordinate(0, 0, NORTH))
+        val drone = Drone(id = "mavic-01")
         var droneCarrier = DroneCarrier(drone)
 
         Scenario("Sending a new delivery instruction") {

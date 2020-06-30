@@ -1,6 +1,7 @@
 package com.s4n.dronemanager.carrier
 
 import com.s4n.dronemanager.exception.DeliveryException
+import com.s4n.dronemanager.model.CartesianCoordinate
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.catchThrowable
 import org.spekframework.spek2.Spek
@@ -13,13 +14,13 @@ object DroneCarrierTest : Spek({
 
         Scenario("Sending a new delivery instruction") {
             val deliveryInstruction = "AAAAIAA"
-            var coordinates = "(0,0,N)"
+            var coordinate: CartesianCoordinate? = null
             When("sending new delivery instruction") {
-                coordinates = droneCarrier.sendItem("mavic_01", deliveryInstruction)
+                coordinate = droneCarrier.sendItem("mavic_01", deliveryInstruction)
             }
 
-            Then("it should return the current coordinates after delivering") {
-                assertThat(coordinates).isEqualTo("(-2,4,W)")
+            Then("it should return the current coordinate after delivering") {
+                assertThat(coordinate.toString()).isEqualTo("(-2,4,W)")
             }
         }
 
@@ -32,7 +33,20 @@ object DroneCarrierTest : Spek({
 
             Then("it should throw the expected exception") {
                 assertThat(throwable).isInstanceOf(DeliveryException::class.java)
-                assertThat(throwable).hasMessage("Max delivery blocks exceeded")
+                assertThat(throwable).hasMessage("Delivery distance out of range")
+            }
+        }
+
+        Scenario("Sending instruction out of range including turns") {
+            val deliveryInstruction = "AAAAAIAAAAADAAAAAIAAAAADA"
+            var throwable: Throwable? = null
+            When("sending the out of range instruction") {
+                throwable = catchThrowable { droneCarrier.sendItem("mavic_01", deliveryInstruction) }
+            }
+
+            Then("it should throw the expected exception") {
+                assertThat(throwable).isInstanceOf(DeliveryException::class.java)
+                assertThat(throwable).hasMessage("Delivery distance out of range")
             }
         }
     }

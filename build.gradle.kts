@@ -19,10 +19,12 @@ repositories {
 
 val spekVersion = "2.0.11"
 val assertjVersion = "3.16.1"
+val mockkVersion = "1.10.0"
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
+    testImplementation("io.mockk:mockk:$mockkVersion")
     testImplementation("org.spekframework.spek2:spek-dsl-jvm:$spekVersion")
     testImplementation("org.assertj:assertj-core:$assertjVersion")
     testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:$spekVersion")

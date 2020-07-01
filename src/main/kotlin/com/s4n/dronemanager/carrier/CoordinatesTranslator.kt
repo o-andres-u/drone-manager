@@ -2,6 +2,7 @@ package com.s4n.dronemanager.carrier
 
 import com.s4n.dronemanager.constants.*
 import com.s4n.dronemanager.model.CartesianCoordinate
+import java.lang.IllegalArgumentException
 
 class CoordinatesTranslator {
 
@@ -35,6 +36,7 @@ class CoordinatesTranslator {
                         EAST -> orientation = NORTH
                     }
                 }
+                else -> throw IllegalArgumentException("Incorrect action: $action")
             }
         }
         return CartesianCoordinate(x, y, orientation)

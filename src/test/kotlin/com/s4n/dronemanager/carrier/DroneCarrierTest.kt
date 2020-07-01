@@ -1,6 +1,5 @@
 package com.s4n.dronemanager.carrier
 
-import com.s4n.dronemanager.constants.NORTH
 import com.s4n.dronemanager.constants.SOUTH
 import com.s4n.dronemanager.constants.WEST
 import com.s4n.dronemanager.exception.DeliveryException

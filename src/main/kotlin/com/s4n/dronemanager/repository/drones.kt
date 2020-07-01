@@ -1,4 +1,4 @@
-package com.s4n.dronemanager.storage
+package com.s4n.dronemanager.repository
 
 import com.s4n.dronemanager.model.Drone
 

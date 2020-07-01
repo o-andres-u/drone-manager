@@ -6,7 +6,7 @@ plugins {
 }
 
 application {
-    mainClassName = "com.s4n.app.DroneManager"
+    mainClassName = "com.s4n.dronemanager.app.DroneManager"
 }
 
 group = "com.s4n"
@@ -20,9 +20,11 @@ repositories {
 val spekVersion = "2.0.11"
 val assertjVersion = "3.16.1"
 val mockkVersion = "1.10.0"
+val coroutinesVersion = "1.3.7"
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
 
     testImplementation("io.mockk:mockk:$mockkVersion")
     testImplementation("org.spekframework.spek2:spek-dsl-jvm:$spekVersion")

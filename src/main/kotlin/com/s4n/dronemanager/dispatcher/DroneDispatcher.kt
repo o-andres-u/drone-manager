@@ -1,8 +1,11 @@
 package com.s4n.dronemanager.dispatcher
 
+import com.s4n.dronemanager.carrier.DroneCarrier
 import com.s4n.dronemanager.constants.MAX_ITEMS_PER_DRONE
 import com.s4n.dronemanager.exception.DeliveryException
+import com.s4n.dronemanager.model.CartesianCoordinate
 import com.s4n.dronemanager.model.Drone
+import java.io.File
 
 class DroneDispatcher {
 
@@ -20,7 +23,23 @@ class DroneDispatcher {
     }
 
     fun readInstructions(droneId: String): List<String> {
-        return listOf()
+        return File("src/main/resources/in$droneId.txt").readLines()
+    }
+
+    fun dispatch(drone: Drone, instructions: List<String>) {
+        println("Drone ${drone.id} starting...")
+        val droneCarrier = DroneCarrier(drone)
+        instructions.forEach {
+            val coordinate = droneCarrier.sendItem(it)
+            printReport(drone.id, coordinate)
+        }
+        println("Drone ${drone.id} finished...")
+    }
+
+    private fun printReport(droneId: String, coordinate: CartesianCoordinate) {
+        val file = File("src/main/resources/out$droneId.txt")
+        file.appendText(coordinate.toString())
+        file.appendText("\n")
     }
 
 }
